@@ -8,7 +8,6 @@ class Photos extends Component {
       heading: "Photo List",
       photos: []
     };
-    console.log(config);
   }
 
   componentDidMount() {
@@ -19,10 +18,11 @@ class Photos extends Component {
     )
       .then(res => res.json())
       .then(data => {
+        console.log(data.results);
         let photos = data.results.map(picture => {
           return (
             <div key={picture.id}>
-              <img src={picture.urls.small} alt="car" />
+              <img src={picture.urls.thumb} alt="car" />
             </div>
           );
         });
@@ -37,7 +37,7 @@ class Photos extends Component {
       <div>
         <h1>{heading}</h1>
         <ul>
-          <li>{photos}</li>
+          <li style={{ listStyle: "none" }}>{photos}</li>
         </ul>
       </div>
     );
